@@ -1,0 +1,32 @@
+<!--DONE BY DANYCE LEE -->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Update note</title>
+    </head>
+    <body>
+    {% from "team2gui/_formhelper.html" import render_field %}
+    {{ form.parkingid(disabled=True) }}
+        <div>
+                <h1>Hello, <span>{{ session_userid }}</span></h1>
+
+                <h1>need your coding here!!</h1>
+        </div>
+
+          <div>
+                <h2>update note</h2>
+                <h1>{{ parkingid }}</h1>
+                <form action="/cycling2_update_save" method="post">
+                    <div class="form-group">
+                        {{ render_field(form.parkingid)}}
+                        <br>
+                        {{ render_field(form.parking)}}
+                    </div>
+                    <button type="submit" style="width: 100%; background-color: black; color: white; padding: 14px 20px; margin: 8px 0; border: none; border-radius: 4px; cursor: pointer;">Update Parking Place</button>
+                </form>
+          </div>
+          <br>
+          <a href="/">Home</a>
+    </body>
+</html>

@@ -1,0 +1,101 @@
+<!--DONE BY BALVEEN-->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Retrive the bookings</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='CSS/Taxi3.css') }}">
+
+    </head>
+    <body>
+    {% from "team2gui/_formhelper.html" import render_field %}
+
+<header>
+  <div class="topnav" id="myTopnav">
+      <a href="/home"><img src="static/Images/icon.png"  style="width:113px; height:28px;"></a>
+<!--<div class="dropdown">
+                <button class="dropbtn" >Route
+                    <i class="fa fa-caret-down" ></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="/routetaxi_create" >Create a Route</a>
+                    <a href="/routetaxi_retrieve" >Display all Routes</a>
+                </div>
+            </div>-->
+      <a href="/camerataxi_retreive">Traffic Camera</a>
+      <div class="dropdown">
+    <button class="dropbtn" id="active">Bookings
+      <i class="fa fa-caret-down" ></i>
+    </button>
+    <div class="dropdown-content">
+      <a href="{{url_for('booking_create')}}" >Create booking</a>
+      <a href="{{url_for('booking_retrieve')}}" >Display bookings</a>
+    </div>
+  </div>
+      <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+          <i class="fa fa-bars"></i>
+      </a>
+  </div>
+
+
+<script>
+function myFunction() {
+    var x = document.getElementById("myTopnav");
+    if (x.className === "topnav") {
+        x.className += " responsive";
+    } else {
+        x.className = "topnav";
+    }
+}
+</script>
+
+</header>
+        <div>
+                <h1>These are your bookings, <span>{{ session_userid }}</span></h1>
+                {% if count == 0 %}
+                    <p>You have no booking.</p>
+                {% else %}
+                    <p>You have <span>{{ count }}</span> booking(s).</p>
+                {% endif %}
+        </div>
+    <form action="/booking_search" method="post" style="float:right;">
+        <p><b>Search according to transportation:</b></p>
+        {{ render_field(form.search)}}
+        <button type="submit" style="width: 100%; background-color: black; color: white; padding: 14px 20px; margin: 8px 0; border: none; border-radius: 4px; cursor: pointer;">Submit</button>
+
+    </form>
+            <div>
+                <h2>retrieve all bookings</h2>
+                    <table width="100%" border="2" cellspacing="0">
+                      <thead>
+                        <tr>
+                            <th>Booking Id</th>
+                            <th>User Id</th>
+                            <th>Booking Date</th>
+                            <th>Location</th>
+                            <th>Destination</th>
+                            <th>Timing</th>
+                            <th>Transportation</th>
+                            <th>Update Booking</th>
+                            <th>Delete Booking</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% for booking in bookings %}
+                            <tr>
+                                <td>{{ booking.get_bookingid() }}</td>
+                                <td>{{ booking.get_userid() }}</td>
+                                <td>{{ booking.get_datecreated() }}</td>
+                                <td>{{ booking.get_location() }}</td>
+                                <td>{{ booking.get_destination() }}</td>
+                                <td>{{ booking.get_time() }}</td>
+                                <td>{{ booking.get_transportation() }}</td>
+                                <td><a href="/booking_update_details/{{booking.get_bookingid()}}">Update Details</a></td>
+                                <td><a href="/booking_delete/{{booking.get_bookingid()}}">Delete</a></td>
+                            </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+            </div>
+    </body>
+</html>

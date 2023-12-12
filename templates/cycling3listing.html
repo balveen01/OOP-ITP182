@@ -1,0 +1,46 @@
+<!--DONE BY DANYCE LEE -->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Promotions</title>
+    </head>
+    <body>
+    {% from "team2gui/_formhelper.html" import render_field %}
+
+        <div>
+                <h1>Hello, <span>{{ session_userid }}</span></h1>
+                {% if count == 0 %}
+                    <p>There is currently no promotions</p>
+                {% else %}
+                    <p>There are <span>{{ count }}</span> promotions now</p>
+                {% endif %}
+        </div>
+
+            <div>
+                <h2>Promotions</h2>
+                    <table width="100%" border="2" cellspacing="0">
+                      <thead>
+                        <tr>
+
+                            <th>Promotions</th>
+                            <th>Date Created</th>
+
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% for cycling3 in cycling3s %}
+                            <tr>
+
+                                <td>{{ cycling2.get_promo() }}</td>
+                                <td>{{ cycling2.get_datecreated() }}</td>
+                            </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+                <br>
+            </div>
+            <br>
+          <a href="/">Home</a>
+    </body>
+</html>

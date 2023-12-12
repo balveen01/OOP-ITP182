@@ -1,0 +1,43 @@
+<!--DONE BY LIM RU MEI-->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>retrieve all users</title>
+    </head>
+    <body>
+    {% from "team2gui/_formhelper.html" import render_field %}
+            <div>
+                <h2>retrieve all users</h2>
+                    <table width="100%" border="2" cellspacing="0">
+                      <thead>
+                        <tr>
+                            <th>uid</th>
+                            <th>user id</th>
+                            <th>name</th>
+                            <th>mobile</th>
+                            <th>type</th>
+                            <th>:)</th>
+                            <th>:)</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% for user in users %}
+                            <tr>
+                                <td>{{ user.get_uid() }}</td>
+                                <td>{{ user.get_userid() }}</td>
+                                <td>{{ user.get_name() }}</td>
+                                <td>{{ user.get_mobile() }}</td>
+                                <td>{{ user.get_utype() }}</td>
+                                <td><a href="/user_update_status/{{ user.get_uid() }}">update status</a></td>
+                                <td><a href="/user_update_details/{{ user.get_uid() }}">update details</a></td>
+                            </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+                <br>
+            </div>
+            <br>
+          <a href="/">Home</a>
+    </body>
+</html>

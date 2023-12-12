@@ -1,0 +1,91 @@
+<!--DONE BY DANYCE LEE -->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="{{ url_for('static', filename='CSS/Cycling2.css') }}">
+        <title>Parking Place</title>
+    </head>
+    <body>
+    {% from "team2gui/_formhelper.html" import render_field %}
+
+<header>
+  <div class="topnav" id="myTopnav">
+      <a href="/home"><img src="static/Images/icon.PNG" alt="Company Logo" style="width:113px; height:28px;"></a>
+      <a href="/Route_create" >Route</a>
+
+      <div class="dropdown">
+                <button class="dropbtn" id="active">Parking Place
+                    <i class="fa fa-caret-down" ></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="/parking_retrieve" >East West Line</a>
+                    <a href="/parking_retrieve" >North South Line</a>
+                    <a href="/parking_retrieve" >North East Line</a>
+                    <a href="/parking_retrieve" >Circle Line</a>
+                    <a href="/parking_retrieve" >Downtown Line</a>
+                </div>
+            </div>
+
+      <a href="/Promotions_create">Promotions</a>
+
+      <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+          <i class="fa fa-bars"></i>
+      </a>
+  </div>
+<script>
+function myFunction() {
+    var x = document.getElementById("myTopnav");
+    if (x.className === "topnav") {
+        x.className += " responsive";
+    } else {
+        x.className = "topnav";
+    }
+}
+</script>
+</header>
+
+
+<h3>Cycling-Parking Place</h3>
+
+
+    <div id="container1">
+        <img src="static/Images/bike.jpg" alt="Bicycles" style="width:450px; height:400px;">
+    </div>
+
+<div id="container1">
+  <form action="/Parking_create" method="POST">
+      <div class = "form-group">
+      <p><b>MRT Line : </b></p>
+          {{ render_field(form.station) }}
+          {{ render_field(form.image1) }}
+      <button type="submit">Submit</button>
+      </div>
+  </form>
+</div>
+{% print("Station is ", station) %}
+{% if station == "Aljunied" %}
+<h1>Image shown below is...</h1>
+    <p>Aljunied Parking Place</p>
+    <img src="static/Images/aljunied.jpg" alt="Aljunied Bicycle Parking Space" style="width:50%; height:45%;">
+
+
+{% elif station == "Bedok" %}
+<h1>Image shown below is...</h1>
+    <p>Bedok Parking Place</p>
+    <img src="static/Images/bedok.jpg" alt="Bedok Bicycle Parking Space" style="width:50%; height:45%;">
+
+{% elif station == "Jurong East" %}
+<h1>Image shown below is...</h1>
+    <p>Jurong East Parking Place</p>
+    <img src="static/Images/JE.jpg" alt="Jurong East Bicycle Parking Space" style="width:50%; height:45%;">
+
+{% elif station == "EXpo" %}
+<h1>Image shown below is...</h1>
+    <p>Expo Parking Place</p>
+    <img src="static/Images/expo.jpg" alt="Expo Bicycle Parking Space" style="width:50%; height:45%;">
+
+{% endif %}
+
+</body>
+</html>

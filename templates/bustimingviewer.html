@@ -1,0 +1,89 @@
+<!--DONE BY LOW XUAN JIE-->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title> Bus Timing Arrival Timing </title>
+        <link rel="stylesheet" href="{{ url_for("static", filename="CSS/bustiming.css")}}">
+    </head>
+    <body>
+    {% from "team2gui/_formhelper.html" import render_field%}
+
+    <div class="topnav" id="myTopnav">
+        <a href="/home"><img src="/static/Images/icon.png" style="width:30px; height:30px;"></a>
+        <a href="/timingbus_viewer" id="active" >Bus Arrival Timing</a>
+    <div class="dropdown">
+        <button class="dropbtn">Shuttle Bus
+            <i class="fa fa-caret-down"></i>
+        </button>
+    <div class="dropdown-content">
+      <a href="/timingcondo_viewer">Condominium</a>
+      <a href="/timinghospital_viewer" >Hospital</a>
+      <a href="/timingmall_viewer">Shopping centre</a>
+    </div>
+  </div>
+
+  <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
+</div>
+
+
+<div>
+        <div id="container1">
+        <img src="/static/Images/bus.jpg" style="width:500px; height:300px;">
+        </div>
+    <div id="container1">
+        <h1>Bus Arrival Timing</h1>
+        <p>For better jorney planning, check estlmated arrival timings and capacity of the bus.</p> <br><br>
+        <!-- <h4>Location: <input type="text" name="enter busstop no." class="edge-autoSuggestFieldFilled"></h4>-->
+    </div>
+
+
+</div>
+
+
+<script>
+function myFunction() {
+    var x = document.getElementById("myTopnav");
+    if (x.className === "topnav") {
+        x.className += " responsive";
+    } else {
+        x.className = "topnav";
+    }
+}
+</script>
+
+    <!-- {% from "team2gui/_formhelper.html" import render_field %}
+
+
+        <div>
+                <h1>Hello, <span>{{ session_userid }}</span></h1>
+                {% if count == 0 %}
+                    <p>You have no timingbus.</p>
+                {% else %}
+                    <p>You have <span>{{ count }}</span> timingbus(s).</p>
+                {% endif %}
+        </div>-->
+
+                <form action="/timingbus_viewer" method="post">
+                    <div class="form-group">
+
+                        <br>
+                        <p><b>Bus-Stop Number:</b></p>
+                        {{ render_field(form.busstopno)}} <br>
+                        <p>
+                             <button type="submit" style="background-color: black; color: white; padding: 14px 20px; margin: 8px 0; border: none; border-radius: 4px; cursor: pointer;">Submit</button>
+                        </p>
+                    </div>
+                </form>
+
+                <div id="container2">
+                <h2> Delay/ Alert </h2>
+        <img src="/static/Images/alert.png" style="width:100px; height:100px;">
+                <h2>There are no delay at the moment </h2>
+        </div>
+
+          <br>
+
+    </body>
+</html>
+

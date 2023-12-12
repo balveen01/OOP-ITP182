@@ -1,0 +1,79 @@
+<!--DONE BY BALVEEN-->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>update booking</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='CSS/Taxi3.css') }}">
+
+    </head>
+    <body>
+    {% from "team2gui/_formhelper.html" import render_field %}
+    {{ form.bookingid(disabled=True) }}
+
+
+    <header>
+  <div class="topnav" id="myTopnav">
+      <a href="/home"><img src="/static/Images/icon.png"  style="width:113px; height:28px;"></a>
+    <!--<div class="dropdown">
+                <button class="dropbtn" >Route
+                    <i class="fa fa-caret-down" ></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="/routetaxi_create" >Create a Route</a>
+                    <a href="/routetaxi_retrieve" >Display all Routes</a>
+                </div>
+            </div>-->
+      <a href="/camerataxi_retreive">Traffic Camera</a>
+      <div class="dropdown">
+    <button class="dropbtn" id="active">Bookings
+      <i class="fa fa-caret-down" ></i>
+    </button>
+    <div class="dropdown-content">
+      <a href="{{url_for('booking_create')}}" >Create booking</a>
+      <a href="{{url_for('booking_retrieve')}}" >Display bookings</a>
+    </div>
+  </div>
+
+      <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+          <i class="fa fa-bars"></i>
+      </a>
+  </div>
+
+
+<script>
+function myFunction() {
+    var x = document.getElementById("myTopnav");
+    if (x.className === "topnav") {
+        x.className += " responsive";
+    } else {
+        x.className = "topnav";
+    }
+}
+</script>
+
+</header>
+
+        <div>
+                <h1>Hello, <span>{{ session_userid }}</span></h1>
+        </div>
+
+          <div>
+                <h2>Update Booking</h2>
+                <h1>{{ bookingid }}</h1>
+                <form action="/booking_update_save" method="post">
+                    <div class="form-group">
+                        <p><b>Booking ID:</b></p>
+                        {{ render_field(form.bookingid)}}
+                        <br>
+                        <p><b>Transportation:</b></p>
+                        {{ render_field(form.transportation) }}
+                        <p><b>Timing:</b></p>
+                        {{ render_field(form.timing) }}
+                    </div>
+                    <button type="submit" style="width: 100%; background-color: black; color: white; padding: 14px 20px; margin: 8px 0; border: none; border-radius: 4px; cursor: pointer;">Update Booking</button>
+                </form>
+          </div>
+          <br>
+    </body>
+</html>

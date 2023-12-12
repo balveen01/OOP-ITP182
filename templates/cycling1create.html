@@ -1,0 +1,74 @@
+<!--DONE BY DANYCE LEE -->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="{{ url_for('static', filename='CSS/Cycling1.css') }}">
+        <title>Routes</title>
+    </head>
+    <body>
+    {% from "team2gui/_formhelper.html" import render_field %}
+
+<header>
+  <div class="topnav" id="myTopnav">
+      <a href="/home"><img src="static/Images/icon.PNG" alt="Company Logo" style="width:113px; height:28px;"></a>
+      <a href="/Route_create" class="active">Route</a>
+      <a href="/Parking_create">Parking Place</a>
+      <a href="/Promotions_create">Promotions</a>
+
+      <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+          <i class="fa fa-bars"></i>
+      </a>
+  </div>
+<script>
+function myFunction() {
+    var x = document.getElementById("myTopnav");
+    if (x.className === "topnav") {
+        x.className += " responsive";
+    } else {
+        x.className = "topnav";
+    }
+}
+</script>
+</header>
+
+
+<h3>Cycling-Routes</h3>
+
+    <div id="container1">
+        <img src="static/Images/Cycling.jpg" alt="Cycling" style="width:450px; height:350px;">
+    </div>
+
+<div id="container1">
+  <form action="/Route_create" method="POST">
+      <div class = "form-group">
+    <p><b>Location:</b></p>
+      {{ render_field(form.location)  }}
+
+    <p><b>Destination:</b></p>
+          {{ render_field(form.destination) }}
+
+
+    <p>
+        <button type="submit" style="background-color: black; color: white; padding: 14px 20px; margin: 8px 0; border: none; border-radius: 4px; cursor: pointer;">Submit</button>
+    </p>
+
+      </div>
+
+  </form>
+</div>
+
+
+
+<div id="container4">
+<h1 class="delays">Delays/Traffic Alerts <img src="static/Images/alert.PNG" alt="Warning Sign" style="width:80px; height:60px;"></h1>
+    <br>
+    <p styles="padding-right:20px;">There are no delays at this moment</p>
+
+</div>
+
+
+
+
+</body>
+</html>

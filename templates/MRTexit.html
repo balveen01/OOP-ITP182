@@ -1,0 +1,90 @@
+<!--DONE BY MICAH ANGELA-->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>MRT: Exit Points</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename = 'CSS/Mrt2.css') }}">
+    </head>
+    <body>
+    {% from "team2gui/_formhelper.html" import render_field %}
+
+
+        <div class="topnav" id="myTopnav">
+            <a href="/home"><img src="static/Images/icon.png" alt="company logo" width="113" height="28"></a>
+                    <div class="dropdown">
+                <button class="dropbtn" id="active">MRT Arrival Timing
+                    <i class="fa fa-caret-down" ></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="/timing_create" >Check the timing</a>
+                    <a href="/timing_retrieve" >Display arrival timing</a>
+                </div>
+            </div>
+            <a href="/MRT_exit">Exit Points</a>
+
+            <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                <i class="fa fa-bars"></i>
+            </a>
+        </div>
+
+        <script>
+        function myFunction() {
+        var x = document.getElementById("myTopnav");
+        if (x.className === "topnav") {
+        x.className += " responsive";
+        } else {
+            x.className = "topnav";
+            }
+        }
+        </script>
+
+        <form  action="/MRTexit" method="post">
+            <div id="container1" style="padding-left:16px">
+                <h2>MRT: Exit Points</h2>
+                <h3>View the numerous exit points at the MRT station to help plan your journey</h3>
+                <img src="static/Images/mrt.png" alt="mrt" width="300" height="200"></a>
+            </div>
+
+            <br>
+            <div id="container1" >
+                <div class="form-group">
+                    <label for = "MRT Station: ">MRT Station: </label>
+                        <select id = "station" name = "station">
+                            <option value="Select your current station">-- Select your current station --</option>
+                            <option value="Yew tee">Yew Tee Station (NS5)</option>
+                            <option value="Marsiling">Marsiling Station (NS8)</option>
+                            <option value="yck">Yio Chu Kang Station (NS15)</option>
+                            <option value="esplanade">Esplanade Station (CC3)</option>
+                            <option value="dg">Dhoby Ghaut Station (NS24 / CC1 / NE6)</option>
+                        </select>
+                    <p>
+                        <button type="submit" style="background-color: black; color: white; padding: 14px 20px; margin: 8px 0; border: none; border-radius: 4px; cursor: pointer;">Submit</button>
+                    </p>
+                </div>
+            </div>
+        </form>
+    </body>
+</html>
+<!--
+<form id="upload_form" action="{{ url_for("upload") }}" method=POST" ENCTYPE="multipart/form.data">
+    <p><b>Upload Image 1</b></p>
+    {{ render_field(form.image1) }}
+        <p><b>Upload Image 2</b></p>
+    {{ render_field(form.image2) }}
+        <p><b>Upload Image 3</b></p>
+    {{ render_field(form.image3) }}
+        <p><b>Upload Image 4</b></p>
+    {{ render_field(form.image4) }}
+    <button type="button">Submit</button>
+</form>
+        <br>
+        <div id = "container1">
+            <div class = "form-group">
+
+            </div>
+        </div>
+    </form>
+    </body>
+</html>
+-->

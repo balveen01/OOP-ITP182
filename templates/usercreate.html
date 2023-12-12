@@ -1,0 +1,28 @@
+<!--DONE BY LIM RU MEI-->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>create new user</title>
+    </head>
+    <body>
+    {% from "team2gui/_formhelper.html" import render_field %}
+          <div>
+                <h2>create new user</h2>
+                <form action="/user_create" method="post">
+                    <div class="form-group">
+                        {{ render_field(form.userid)}}
+                        <br>
+                        {{ render_field(form.name)}}
+                        <br>
+                        {{ render_field(form.mobile)}}
+                        <br>
+                        {{ render_field(form.utype)}}
+                    </div>
+                    <button type="submit" style="width: 100%; background-color: black; color: white; padding: 14px 20px; margin: 8px 0; border: none; border-radius: 4px; cursor: pointer;">Create New User</button>
+                </form>
+          </div>
+          <br>
+          <a href="/">Home</a>
+    </body>
+</html>

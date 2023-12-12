@@ -1,0 +1,82 @@
+<!--DONE BY MICAH ANGELA-->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>MRT: Search</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename = 'CSS/Mrt2.css') }}">
+    </head>
+    <body>
+        {% from "team2gui/_formhelper.html" import render_field %}
+        <div class="topnav" id="myTopnav">
+            <a href="/homepage2"><img src="static/Images/icon.png" alt="company logo" width="113" height="28"></a>
+                <div class="dropdown">
+                    <button class="dropbtn" id="active">MRT Arrival Timing
+                        <i class="fa fa-caret-down" ></i>
+                    </button>
+                <div class="dropdown-content">
+                    <a href="/timing_create" >Check the timing</a>
+                    <a href="/timing_retrieve" >Display arrival timing</a>
+                </div>
+                </div>
+            <a href="/MRT_exit">Exit Points</a>
+
+            <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                <i class="fa fa-bars"></i>
+            </a>
+        </div>
+
+        <script>
+        function myFunction() {
+        var x = document.getElementById("myTopnav");
+        if (x.className === "topnav") {
+        x.className += " responsive";
+        } else {
+            x.className = "topnav";
+            }
+        }
+        </script>
+
+        <div>
+                <h1>These are your exit points, <span>{{ session_userid }}</span></h1>
+                {% if count == 0 %}
+                    <p>You have no exit input.</p>
+                {% else %}
+                    <p>You have <span>{{ count }}</span> exit(s).</p>
+                {% endif %}
+        </div>
+            <form action="/MRT_exit_search" method="post" style="float:right" >
+                <p><b>Search for the station:</b></p>
+                {{ render_field(form.station)}}
+                <button type="submit" style="background-color: black; color: white; padding: 14px 20px; margin: 8px 0; border: none; border-radius: 4px; cursor: pointer;">Submit</button>
+            </form>
+
+        <div>
+            <h2>Retrieve all exits</h2>
+                <table width="100%" border="2" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Station</th>
+                            <th>Exit Image</th>
+                            <th>Exit Image</th>
+                            <th>Exit Image</th>
+                            <th>Exit Image</th>
+
+                        </tr>
+                    </thead>
+
+                      <tbody>
+                        {% for exit in exitlist1%}
+                            <tr>
+
+                                <td>{{ exit.get_image1() }}</td>
+                                <td>{{ exit.get_image2() }}</td>
+                                <td>{{ exit.get_image3() }}</td>
+                                <td>{{ exit.get_image4() }}</td>
+                            </tr>
+                        {% endfor %}
+                      </tbody>
+                </table>
+        </div>
+    </body>
+</html>

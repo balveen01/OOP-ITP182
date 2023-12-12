@@ -1,0 +1,88 @@
+<!--DONE BY BALVEEN-->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Retrive the routes</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='CSS/Taxi4.css') }}">
+
+    </head>
+    <body>
+    {% from "team2gui/_formhelper.html" import render_field %}
+
+<header>
+  <div class="topnav" id="myTopnav">
+      <a href="/home"><img src="static/Images/icon.png"  style="width:113px; height:28px;"></a>
+            <!--<div class="dropdown">
+                <button class="dropbtn" >Route
+                    <i class="fa fa-caret-down" ></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="/routetaxi_create" >Create a Route</a>
+                    <a href="/routetaxi_retrieve" >Display all Routes</a>
+                </div>
+            </div>-->
+      <a href="/camerataxi_retreive" id="active">Traffic Camera</a>
+      <div class="dropdown">
+    <button class="dropbtn" >Bookings
+      <i class="fa fa-caret-down" ></i>
+    </button>
+    <div class="dropdown-content">
+      <a href="{{url_for('booking_create')}}" >Create booking</a>
+      <a href="{{url_for('booking_retrieve')}}" >Display bookings</a>
+    </div>
+  </div>
+
+      <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+          <i class="fa fa-bars"></i>
+      </a>
+  </div>
+
+
+<script>
+function myFunction() {
+    var x = document.getElementById("myTopnav");
+    if (x.className === "topnav") {
+        x.className += " responsive";
+    } else {
+        x.className = "topnav";
+    }
+}
+</script>
+
+</header>
+        <div>
+                <h1>These are your cameras, <span>{{ session_userid }}</span></h1>
+                {% if count == 0 %}
+                    <p>You have no cameras.</p>
+                {% else %}
+                    <p>You have <span>{{ count }}</span> cameras(s).</p>
+                {% endif %}
+        </div>
+    <form action="/camera_search" method="post" style="float:right;">
+        {{ render_field(form.expressway)}}
+<button type="submit" style="width: 100%; background-color: black; color: white; padding: 14px 20px; margin: 8px 0; border: none; border-radius: 4px; cursor: pointer;">Submit</button>    </form>
+
+            <div>
+                <h2>Retrieve all cameras</h2>
+                    <table width="100%" border="2" cellspacing="0">
+                      <thead>
+                        <tr>
+                            <th>Expressway</th>
+                            <th>Camera Image</th>
+                            <th>Camera Image</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% for camera in cameras%}
+                            <tr>
+                                <td><p style="font-size:50px;">{{ camera.get_expressway() }}</p> </td>
+                                <td> <img src="static/Images/{{ camera.get_image1() }}" style="width:80%; height:90%;"></td>
+                                <td> <img src="static/Images/{{ camera.get_image2() }}" style="width:300px; height:200px;"></td>
+                            </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+            </div>
+    </body>
+</html>

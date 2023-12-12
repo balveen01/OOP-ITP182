@@ -1,0 +1,99 @@
+<!--DONE BY LOW XUAN JIE-->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Admin Shuttlebus Timing create </title>
+        <link rel="stylesheet" href="{{ url_for("static", filename="CSS/bustiming.css")}}">
+    </head>
+    <body>
+    {% from "team2gui/_formhelper.html" import render_field%}
+
+  <div class="topnav" id="myTopnav">
+        <a href="/home"><img src="/static/Images/icon.png" style="width:30px; height:30px;"></a>
+        <a href="/timingbus_create" >ADMIN^ Bus Arrival Timing</a>
+
+    <div class="dropdown">
+        <button class="dropbtn">Shuttle Bus
+            <i class="fa fa-caret-down"></i>
+        </button>
+    <div class="dropdown-content">
+      <a href="/timingcondo_create">ADMIN^Condominium</a>
+      <a href="/timinghospital_create" class="active">ADMIN^Hospital</a>
+      <a href="/timingmall_create"> ADMIN^Shopping Centre</a>
+    </div>
+    </div>
+      <div class="dropdown">
+        <button class="dropbtn">Listing
+            <i class="fa fa-caret-down"></i>
+        </button>
+    <div class="dropdown-content">
+      <a href="/timingbus_retrieve" >ADMIN^ Bus Listing</a>
+        <a href="/timingcondo_retrieve" >ADMIN^Condo Listing</a>
+      <a href="/timinghospital_retrieve" >ADMIN^Hospital Listing</a>
+      <a href="/timingmall_retrieve">ADMIN^Shopping Centre</a>
+    </div>
+  </div>
+  </div>
+
+
+
+<div>
+        <div id="container1">
+        <img src="/static/Images/hospital.jpg" style="width:500px; height:300px;">
+        </div>
+    <div id="container1">
+        <h1>ADMIN ShuttleBus Arrival Timing</h1>
+        <p>For better jorney planning, arrival timings of  shuttlebus.</p> <br><br>
+        <!-- <h4>Location: <input type="text" name="enter busstop no." class="edge-autoSuggestFieldFilled"></h4>-->
+    </div>
+
+
+</div>
+
+
+<script>
+function myFunction() {
+    var x = document.getElementById("myTopnav");
+    if (x.className === "topnav") {
+        x.className += " responsive";
+    } else {
+        x.className = "topnav";
+    }
+}
+</script>
+
+    <!-- {% from "team2gui/_formhelper.html" import render_field %}
+
+
+        <div>
+                <h1>Hello, <span>{{ session_userid }}</span></h1>
+                {% if count == 0 %}
+                    <p>You have no timingbus.</p>
+                {% else %}
+                    <p>You have <span>{{ count }}</span> timingbus(s).</p>
+                {% endif %}
+        </div>-->
+
+                <form action="/timinghospital_create" method="post">
+                    <div class="form-group">
+
+                        <br>
+                        {{ render_field(form.fromhospital)}} <br>
+                        <br>
+                        {{ render_field(form.tohospital)}}<br>
+                        <br>
+                        {{  render_field(form.hospital)}} <br>
+                        <br>
+                        <p>
+                             <button type="submit" style="background-color: black; color: white; padding: 14px 20px; margin: 8px 0; border: none; border-radius: 4px; cursor: pointer;">Create</button>
+                        </p>
+                    </div>
+                </form>
+
+
+          <br>
+
+    </body>
+</html>
+

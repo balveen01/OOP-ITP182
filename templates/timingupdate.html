@@ -1,0 +1,66 @@
+<!--DONE BY MICAH ANGELA-->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Update Timing</title>
+    </head>
+    {% from "team2gui/_formhelper.html" import render_field %}
+    {{ form.timingid(disabled=True) }}
+        <link rel="stylesheet" href="{{ url_for('static', filename = 'CSS/Mrt1.css') }}">
+    </head>
+    <body>
+
+        <div class="topnav" id="myTopnav">
+            <a href="/home"><img src="/static/Images/icon.png" alt="company logo" width="113" height="28"></a>
+                            <div class="dropdown">
+                    <button class="dropbtn" id="active">MRT Arrival Timing
+                        <i class="fa fa-caret-down" ></i>
+                    </button>
+
+                <div class="dropdown-content">
+                    <a href="/timing_create" >Check the timing</a>
+                    <a href="/timing_retrieve" >Display arrival timing</a>
+                </div>
+                </div>
+            <a href="/MRT_exit">Exit Points</a>
+
+            <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                <i class="fa fa-bars"></i>
+            </a>
+        </div>
+
+        <script>
+        function myFunction() {
+        var x = document.getElementById("myTopnav");
+        if (x.className === "topnav") {
+        x.className += " responsive";
+        } else {
+            x.className = "topnav";
+            }
+        }
+        </script>
+
+        <div>
+                <h1>Hello, <span>{{ session_userid }}</span></h1>
+
+        </div>
+
+          <div>
+                <h2>Update Timing</h2>
+                <h1>{{ timingid }}</h1>
+                <form action="/timing_update_save" method="post">
+                    <div class="form-group">
+                        <p><b>Timing id:</b></p>
+                        {{ render_field(form.timingid)}}
+                        <br>
+                        <p><b>Timing:</b></p>
+                        {{ render_field(form.timing)}}
+                    </div>
+                    <button type="submit" style="background-color: black; color: white; padding: 14px 20px; margin: 8px 0; border: none; border-radius: 4px; cursor: pointer;">Update Timing</button>
+                </form>
+          </div>
+          <br>
+          <a href="/">Home</a>
+    </body>
+</html>

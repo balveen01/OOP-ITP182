@@ -1,0 +1,43 @@
+<!--DONE BY DANYCE LEE -->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="{{ url_for('static', filename='CSS/Cycling3.css') }}">
+        <title>Promotions</title>
+    </head>
+    <body>
+    {% from "team2gui/_formhelper.html" import render_field %}
+
+<header>
+  <div class="topnav" id="myTopnav">
+      <a href="/home"><img src="static/Images/icon.PNG" alt="Company Logo" style="width:113px; height:28px;"></a>
+      <a href="/Route_create" >Route</a>
+      <a href="/Parking_create">Parking Place</a>
+      <a href="/Promotions_create" class="active">Promotions</a>
+
+      <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+          <i class="fa fa-bars"></i>
+      </a>
+  </div>
+<script>
+function myFunction() {
+    var x = document.getElementById("myTopnav");
+    if (x.className === "topnav") {
+        x.className += " responsive";
+    } else {
+        x.className = "topnav";
+    }
+}
+</script>
+</header>
+
+
+<h3>Cycling-Promotions</h3>
+
+    <p>There are no promotions for the time being !</p>
+    <br>
+    <p>Please keep a look out for promotions in the near future !</p>
+
+</body>
+</html>

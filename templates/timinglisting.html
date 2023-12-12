@@ -1,0 +1,87 @@
+<!--DONE BY MICAH ANGELA-->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>MRT: Retrieve</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename = 'CSS/Mrt1.css') }}">
+    </head>
+    <body>
+    {% from "team2gui/_formhelper.html" import render_field %}
+
+        <div class="topnav" id="myTopnav">
+            <a href="/home"><img src="static/Images/icon.png" alt="company logo" width="113" height="28"></a>
+                            <div class="dropdown">
+                    <button class="dropbtn" id="active">MRT Arrival Timing
+                        <i class="fa fa-caret-down" ></i>
+                    </button>
+
+                <div class="dropdown-content">
+                    <a href="/timing_create" >Check the timing</a>
+                    <a href="/timing_retrieve" >Display arrival timing</a>
+                </div>
+                </div>
+            <a href="/MRT_exit">Exit Points</a>
+
+            <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                <i class="fa fa-bars"></i>
+            </a>
+        </div>
+
+        <script>
+        function myFunction() {
+        var x = document.getElementById("myTopnav");
+        if (x.className === "topnav") {
+        x.className += " responsive";
+        } else {
+            x.className = "topnav";
+            }
+        }
+        </script>
+
+
+        <div>
+                <h1>Hello, <span>{{ session_userid }}</span></h1>
+                {% if count == 0 %}
+                    <p>You have no current timing(s).</p>
+                {% else %}
+                    <p>You have <span>{{ count }}</span> timing(s).</p>
+                {% endif %}
+        </div>
+
+            <div>
+                <h2>Retrieve all Train arrival timings</h2>
+                    <table width="100%" border="2" cellspacing="0">
+                      <thead>
+                        <tr>
+                            <th>Train No.</th>
+                            <th>Location</th>
+                            <th>Destination</th>
+                            <th>Date created</th>
+                            <th>Time</th>
+                            <th>Status</th>
+                            <th>Update Timing</th>
+                            <th>Delete</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% for timing in timings %}
+                            <tr>
+                                <td>{{ timing.get_timingid() }}</td>
+                                <td>{{ timing.get_location() }}</td>
+                                <td>{{ timing.get_destination() }}</td>
+                                <td>{{ timing.get_datecreated() }}</td>
+                                <td>{{ timing.get_time() }}</td>
+                                <td>{{ timing.get_status() }}</td>
+                                <td><a href = "/timing_edit/{{ timing.get_timingid() }}">Update Timing</a></td>
+                                <td><a href = "/timing_delete/{{ timing.get_timingid() }}">Delete</a></td>
+                            </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+                <br>
+            </div>
+            <br>
+          <a href="/">Home</a>
+    </body>
+</html>

@@ -1,0 +1,96 @@
+<!--DONE BY BALVEEN-->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Retrive the routes</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='CSS/Taxi1.css') }}">
+
+    </head>
+    <body>
+    {% from "team2gui/_formhelper.html" import render_field %}
+
+<header>
+  <div class="topnav" id="myTopnav">
+      <a href="/home"><img src="static/Images/icon.png"  style="width:113px; height:28px;"></a>
+            <div class="dropdown">
+                <button class="dropbtn" id="active">Route
+                    <i class="fa fa-caret-down" ></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="/routetaxi_create" >Create a Route</a>
+                    <a href="/routetaxi_retrieve" >Display all Routes</a>
+                </div>
+            </div>
+<a href="/camerataxi_retreive">Traffic Camera</a>      <div class="dropdown">
+    <button class="dropbtn" >Bookings
+      <i class="fa fa-caret-down" ></i>
+    </button>
+    <div class="dropdown-content">
+      <a href="{{url_for('booking_create')}}" >Create booking</a>
+      <a href="{{url_for('booking_retrieve')}}" >Display bookings</a>
+    </div>
+  </div>
+
+      <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+          <i class="fa fa-bars"></i>
+      </a>
+  </div>
+
+
+<script>
+function myFunction() {
+    var x = document.getElementById("myTopnav");
+    if (x.className === "topnav") {
+        x.className += " responsive";
+    } else {
+        x.className = "topnav";
+    }
+}
+</script>
+
+</header>
+        <div>
+                <h1>These are your bookings, <span>{{ session_userid }}</span></h1>
+                {% if count == 0 %}
+                    <p>You have no booking.</p>
+                {% else %}
+                    <p>You have <span>{{ count }}</span> booking(s).</p>
+                {% endif %}
+        </div>
+    <form action="/route_search" method="post" style="float:right;">
+        {{ render_field(form.search)}}
+        <button type="submit" style="width: 100%; background-color: black; color: white; padding: 14px 20px; margin: 8px 0; border: none; border-radius: 4px; cursor: pointer;">Submit</button>
+    </form>
+
+            <div>
+                <h2>retrieve all route</h2>
+                    <table width="100%" border="2" cellspacing="0">
+                      <thead>
+                        <tr>
+                            <th>Route Id</th>
+                            <th>User Id</th>
+                            <th>Location</th>
+                            <th>Destination</th>
+                            <th>Booking Created</th>
+                            <th>:)</th>
+                            <th>:)</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% for route in route1s %}
+                            <tr>
+                                <td>{{ route.get_routeid() }}</td>
+                                <td>{{ route.get_userid() }}</td>
+                                <td>{{ route.get_location() }}</td>
+                                <td>{{ route.get_destination() }}</td>
+                                <td>{{ route.get_datecreated() }}</td>
+                                <td><a href="/booking_update_status/{{route.get_routeid()}}">update status</a></td>
+                                <td><a href="/booking_update_details/{{route.get_routeid()}}">update details</a></td>
+                            </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+            </div>
+    </body>
+</html>

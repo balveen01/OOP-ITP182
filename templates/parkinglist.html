@@ -1,0 +1,72 @@
+<!--DONE BY DANYCE LEE-->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Retrieve Parking Places</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='CSS/Cycling1.css') }}">
+
+    </head>
+    <body>
+
+    {% from "team2gui/_formhelper.html" import render_field %}
+
+<header>
+  <div class="topnav" id="myTopnav">
+      <a href="/home"><img src="static/Images/icon.PNG" alt="Company Logo" style="width:113px; height:28px;"></a>
+      <a href="/Route_create" >Route</a>
+      <a href="/Parking_create" class="active">Parking Place</a>
+      <a href="/Promotions_create">Promotions</a>
+
+      <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+          <i class="fa fa-bars"></i>
+      </a>
+  </div>
+<script>
+function myFunction() {
+    var x = document.getElementById("myTopnav");
+    if (x.className === "topnav") {
+        x.className += " responsive";
+    } else {
+        x.className = "topnav";
+    }
+}
+</script>
+</header>
+
+        <div>
+                <h1>These are your parking place, <span>{{ session_userid }}</span></h1>
+                {% if count == 0 %}
+                    <p>You have no parking place.</p>
+                {% else %}
+                    <p>You have <span>{{ count }}</span> parking place.</p>
+                {% endif %}
+        </div>
+    <form action="/parking_search" method="post" style="float:right;">
+        <p><b>Search for the MRT station:</b></p>
+        {{ render_field(form.station)}}
+<button type="submit" style="width: 100%; background-color: black; color: white; padding: 14px 20px; margin: 8px 0; border: none; border-radius: 4px; cursor: pointer;">Submit</button>    </form>
+
+            <div>
+                <h2>Retrieve all parking place</h2>
+                    <table width="100%" border="2" cellspacing="0">
+                      <thead>
+                        <tr>
+                            <th>MRT Line</th>
+                            <th>Station</th>
+                            <th>Parking Place</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% for p in parking%}
+                            <tr>
+                                <td>{{ p.get_location() }}</td>
+                                <td>{{ p.get_station() }}</td>
+                                <td><img src="static/Images/{{ p.get_image1() }}"  style="width:500px; height:500px;"></td>
+                            </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+            </div>
+    </body>
+</html>

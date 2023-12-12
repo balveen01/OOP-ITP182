@@ -1,0 +1,78 @@
+<!--DONE BY LOW XUAN JIE-->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Bus Arrival Timing </title>
+         <link rel="stylesheet" href="{{ url_for("static", filename="CSS/bustiminglist.css")}}">
+    </head>
+    <body>
+
+    <div class="topnav" id="myTopnav">
+        <a href="/home"><img src="/static/Images/icon.png" style="width:30px; height:30px;"></a>
+        <a href="/timingbus_viewer" class="active">Bus Arrival Timing</a>
+    <div class="dropdown">
+        <button class="dropbtn">Shuttle Bus
+            <i class="fa fa-caret-down"></i>
+        </button>
+    <div class="dropdown-content">
+      <a href="/timingcondo_viewer">Condominium</a>
+      <a href="/timinghospital_viewer">Hospital</a>
+      <a href="/timingmall_viewer">Shopping Centre</a>
+    </div>
+  </div>
+
+  <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
+</div>
+
+{#    {% from "team2gui/_formhelper.html" import render_field %}#}
+{##}
+{#        <div>#}
+{#                <h1>Hello, <span>{{ session_userid }}</span></h1>#}
+{#                {% if count == 0 %}#}
+{#                    <p>You have no timingbus.</p>#}
+{#                {% else %}#}
+{#                    <p>You have <span>{{ count }}</span> timingbus(s).</p>#}
+{#                {% endif %}#}
+{#        </div>#}
+
+            <div>
+                <h2>Bus Arrival Timing</h2>
+                <h4>DD = DoubleDeck , SD = SingleDeck , WC = Wheelchair </h4>
+                <h2 align="center">Busstop No: {{ busstopno }} </h2>
+                    <table width="50%" border="2" cellspacing="1" align="center">
+                      <thead>
+                        <tr>
+{#                            <th>User id</th>#}
+{#                            <th>BusStop No.</th>#}
+                            <th>Bus No.</th>
+                            <th>Waiting time</th>
+{#                            <th>Busstop No.</th>#}
+{#                            <th>Date</th>#}
+{#                            <th>Transport</th>#}
+
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% for timingbus in timingbuss %}
+                            <tr>
+{#                                <td>{{ timingbus.get_userid() }}</td>#}
+{#                                <td>{{ timingbus.get_busstopno()}}</td>#}
+                                <td>{{ timingbus.get_busno()}}</td>
+                                <td>{{ timingbus.get_timingbus()}}</td>
+{#                                <td>{{ timingbus.get_busstopno()}}</td>#}
+
+
+{#                                <td>{{ timingbus.get_datecreated() }}</td>#}
+{#                                <td>{{ timingbus.get_status() }}</td>#}
+                                <!-- <td><a href="/timingbus_update_details/{{timingbus.get_timingbusid()}}">update details</a></td> -->
+
+                            </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+                <br>
+            </div>
+            <br>
+    </body>
+</html>

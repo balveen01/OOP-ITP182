@@ -1,6 +1,6 @@
 # OOP-ITP182
 
-## [Object Oriented Programming (ITP182)][oop]
+## Object Oriented Programming (ITP182)
 Singapore Transportation Systems is website that helps user to plan their trip early with the knowledge of the Mass Rapid Transportation (MRT) and bus timing. They are also able to use our features for taxi and bicycles.
 
 Programming Language: Python, Flask, HTML, CSS
